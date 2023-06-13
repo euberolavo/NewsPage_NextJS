@@ -1,29 +1,22 @@
 import React from 'react';
 import Link from 'next/link';
 
-export default function Card({
-  children,
-  title,
-  image,
-  author,
-  date,
-  index,
-  ...props
-}) {
+import { CardTitle, CardContainer, CardImage, CardAuthor } from '../../theme/cardscomponents';
 
-  const handleClick = () => {
-        console.log('Card clicado!');
-  };
-
+export default function Card({ title, image, author, date, index }) {
   return (
     <>
-    <Link href={`/news/${index}`} passHref>
-      <h2>{title}</h2>
-      <p>{author}</p>
-      <img src={image} alt={title} />
-      {/* <p>{children}</p> */}
-      <p>{date}</p>
-    </Link>
+      <Link
+        href={`/index/${index}`}
+        style={{ textDecoration: 'none' }}
+      >
+        <CardContainer as="article">
+          <CardImage as="img" src={image} alt={title} />
+          <CardTitle as="h1">{title}</CardTitle>
+          <CardAuthor as="p">{author}</CardAuthor>
+          {/* <p>{date}</p> */}
+        </CardContainer>
+      </Link>
     </>
   );
 }
